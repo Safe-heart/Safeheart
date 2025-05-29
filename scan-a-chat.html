@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scan a Chat – Safe💚</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #FAFAFA;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header, footer {
+      background: linear-gradient(to bottom, #d9f5dc, #ffffff);
+      text-align: center;
+      padding: 1rem;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    section {
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    .button {
+      padding: 0.75rem 1.5rem;
+      background-color: #44B549;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .safe { background-color: #d4edda; color: #155724; }
+    .caution { background-color: #fff3cd; color: #856404; }
+    .danger { background-color: #f8d7da; color: #721c24; }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛡️ Scan a Chat</h1>
+    <p>Check for signs of online scam or manipulation</p>
+  </header>
+  <section>
+    <textarea id="chatInput" rows="8" placeholder="Paste the chat message here..."></textarea>
+    <button class="button" onclick="scanChat()">Scan</button>
+    <div id="result" class="result"></div>
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </section>
+  <footer>© 2025 Safe💚. All rights reserved.</footer>
+
+  <script>
+    function scanChat() {
+      const chat = document.getElementById('chatInput').value.toLowerCase();
+      const result = document.getElementById('result');
+      result.innerHTML = '';
+
+      const redFlags = [
+        "send me money", "transfer money", "i need money", "my mother is sick", 
+        "i was arrested", "i love you", "i’m in the army", "wa.me", "whatsapp", 
+        "£300", "£800", "overseas", "can’t meet", "move to whatsapp", "private chat",
+        "secret", "lawyer", "emergency", "investment", "bank account", "gift card",
+        "romantic", "love bombing"
+      ];
+
+      const moneyPattern = /\b(send|give|transfer).+?money\b/;
+      const loveThenMoney = /love.*money|money.*love/;
+
+      let flag = redFlags.some(flag => chat.includes(flag)) || moneyPattern.test(chat) || loveThenMoney.test(chat);
+
+      if (flag) {
+        result.className = "result danger";
+        result.innerHTML = "❌ This message contains signs of a scam (money requests, love bombing, or suspicious details).";
+      } else {
+        result.className = "result safe";
+        result.innerHTML = "✅ This message appears safe.";
+      }
+    }
+  </script>
+</body>
+</html>

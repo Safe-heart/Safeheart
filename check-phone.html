@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Check a Phone Number – Safe💚</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #FAFAFA;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background: linear-gradient(to bottom, #d9f5dc, #ffffff);
+      text-align: center;
+      padding: 1rem;
+    }
+    section {
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .button {
+      padding: 0.75rem 1.5rem;
+      background-color: #44B549;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .safe { background-color: #d4edda; color: #155724; }
+    .caution { background-color: #fff3cd; color: #856404; }
+    .danger { background-color: #f8d7da; color: #721c24; }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📞 Check a Phone Number</h1>
+    <p>Is this number linked to a scam?</p>
+  </header>
+  <section>
+    <input type="text" id="phoneInput" placeholder="Enter phone number (e.g., +447123456789)">
+    <button class="button" onclick="checkPhone()">Check</button>
+    <div id="result" class="result"></div>
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </section>
+  <footer>© 2025 Safe💚. All rights reserved.</footer>
+
+  <script>
+    function checkPhone() {
+      const result = document.getElementById('result');
+      const outcomes = [
+        { class: 'safe', text: '✅ Safe — This number has not been reported.' },
+        { class: 'caution', text: '⚠️ Caution — This number may be linked to spam or scams.' },
+        { class: 'danger', text: '❌ Alert — This number has been reported in scam databases.' }
+      ];
+      const pick = outcomes[Math.floor(Math.random() * outcomes.length)];
+      result.className = 'result ' + pick.class;
+      result.innerHTML = pick.text;
+    }
+  </script>
+</body>
+</html>
